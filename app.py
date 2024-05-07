@@ -16,7 +16,14 @@ def index():
 @app.post("/")
 def handle_search():
     query = request.form.get("query", "")
-    results = es.search(query={"match": {"name": {"query": query}}})
+    results = es.search(
+        query={
+            "multi_match": {
+                "query": query,
+                "fields": ["name", "summary", "content"],
+            }
+        }
+    )
     return render_template(
         "index.html",
         query=query,
@@ -28,7 +35,10 @@ def handle_search():
 
 @app.get("/document/<id>")
 def get_document(id):
-    return "Document not found"
+    document = es.retrieve_document(id)
+    title = document["_source"]["name"]
+    paragraphs = document["_source"]["content"].split("\n")
+    return render_template("document.html", title=title, paragraphs=paragraphs)
 
 
 @app.cli.command()

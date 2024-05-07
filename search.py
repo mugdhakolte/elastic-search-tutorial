@@ -38,3 +38,6 @@ class Search:
 
     def search(self, **query_args):
         return self.es.search(index="my_documents", **query_args)
+
+    def retrieve_document(self, id):
+        return self.es.get(index="my_documents", id=id)
