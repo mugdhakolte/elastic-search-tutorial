@@ -1,4 +1,4 @@
-# Elasticsearch Search Tutorial
+fla# Elasticsearch Search Tutorial
 
 This directory contains a starter Flask project used in the Search tutorial.
 
@@ -34,5 +34,21 @@ This directory contains a starter Flask project used in the Search tutorial.
 
 4) Index documents
 	```bash
-		flask reindex
+	flask reindex
 	```
+
+## Project formatting and Linting
+
+1) Using ruff 
+	```bash
+	ruff format .
+	ruff check .
+	```
+2) Using Black
+	```bash
+	black .
+	```
+3) Using isort
+	```bash
+	isort . --profile black
+ 	```

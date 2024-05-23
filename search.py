@@ -1,7 +1,5 @@
 import json
 from pprint import pprint
-import os
-import time
 
 from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
